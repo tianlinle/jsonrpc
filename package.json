@@ -1,12 +1,11 @@
 {
   "name": "tian-jsonrpc",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A simple implementation of jsonrpc2",
   "main": "dist/index.js",
   "typings": "dist/index",
   "scripts": {
-    "clean": "rm -rf dist",
-    "compile": "npm run clean && tsc -p .",
+    "compile": "tsc",
     "prepublishOnly": "npm run compile"
   },
   "repository": {
@@ -16,10 +15,13 @@
   "keywords": [
     "jsonrpc"
   ],
-  "author": "wangtianlin",
+  "author": "tianlinle",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/tianlinle/jsonrpc/issues"
   },
-  "homepage": "https://github.com/tianlinle/jsonrpc#readme"
+  "homepage": "https://github.com/tianlinle/jsonrpc#readme",
+  "files": [
+    "dist"
+  ]
 }

@@ -3,7 +3,7 @@ import { JsonRpcError } from "./JsonRpcError";
 
 export class JsonRpcHandler {
     private methods: { [key: string]: { method: Function, context?: Object } } = {};
-    private onUnexpectedError: Function;
+    private onUnexpectedError: (error: any) => any;
 
     setHandler(methodName: string, method: Function, context?: Object) {
         this.methods[methodName] = {
@@ -23,7 +23,7 @@ export class JsonRpcHandler {
         }
     }
 
-    setOnUnexpectedError(onUnexpectedError: Function) {
+    setOnUnexpectedError(onUnexpectedError: (error: any) => any) {
         this.onUnexpectedError = onUnexpectedError;
     }
 
