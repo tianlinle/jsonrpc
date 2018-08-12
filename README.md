@@ -16,18 +16,6 @@ jsonRpc.setHandler('sayHello', function ({ name }) {
     return `hello ${name}`;
 });
 
-//... or add multi methods from an object...
-class Api {
-    static async doSomething() {
-        return await new Promise(resolve => {
-            setTimeout(() => {
-                resolve('do async thing result');
-            }, 1000);
-        });
-    }
-}
-jsonRpc.extractHandler(Api);
-
 //now you can handle jsonrpc request
 jsonRpc.handle('{"jsonrpc":"2.0","method":"doSomething","id":"1"}');
 
@@ -35,8 +23,7 @@ jsonRpc.handle('{"jsonrpc":"2.0","method":"doSomething","id":"1"}');
 (async () => {
     let result2 = await jsonRpc.handle([
         { jsonrpc: '2.0', method: 'unexisted method', id: 1 },
-        { jsonrpc: '2.0', method: 'sayHello', id: 2, params: { name: 'world' } },
-        { jsonrpc: '2.0', method: 'doAsyncThing', id: 3, params: { value: 'params...' } }
+        { jsonrpc: '2.0', method: 'sayHello', id: 2, params: { name: 'world' } }
     ]);
 })();
 ```
@@ -57,7 +44,6 @@ jsonRpc.handle('{"jsonrpc":"2.0","method":"doSomething","id":"1"}');
 + JsonRpcHandler
     + JsonRpcHandler.constructor()
     + JsonRpcHandler.setHandler(methodName: string, method: Function, context?: Object)
-    + JsonRpcHandler.extractHandler(object: Object)
     + JsonRpcHandler.setOnUnexpectedError(onUnexpectedError: Function)
     + JsonRpcHandler.getMethods()
     + async JsonRpcHandler.handle(body)

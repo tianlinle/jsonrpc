@@ -16,7 +16,6 @@ let methods = {
 
 (async () => {
     let jsonRpc = new JsonRpcHandler();
-    jsonRpc.extractHandler(methods);
     jsonRpc.setHandler('sayHello', function ({ name }) {
         return `hello ${name}`;
     });

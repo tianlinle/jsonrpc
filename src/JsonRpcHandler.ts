@@ -12,17 +12,6 @@ export class JsonRpcHandler {
         }
     }
 
-    extractHandler(object: Object) {
-        if (typeof object == 'object') {
-            for (let key in object) {
-                let v = object[key];
-                if (typeof v == 'function' && !/^\s*class\s+/.test(v.toString())) {
-                    this.setHandler(key, v, object);
-                }
-            }
-        }
-    }
-
     setOnUnexpectedError(onUnexpectedError: (error: any) => any) {
         this.onUnexpectedError = onUnexpectedError;
     }
