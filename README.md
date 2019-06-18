@@ -4,14 +4,14 @@ A simple implementation of jsonrpc2
 ### example
 
 ```js
-import { JsonRpcHandler, JsonRpcError } from 'tian-jsonrpc';
+const { JsonRpcHandler, JsonRpcError } = require('tian-jsonrpc');
 
 let jsonRpc = new JsonRpcHandler();
 
 //add a single method like this...
-jsonRpc.setHandler('sayHello', function ({ name }) {
+jsonRpc.setMethodHandler('sayHello', function ({ name }) {
     if (!name) {
-        throw JsonRpcError.alert('parameter `name` is required');
+        throw JsonRpcError.InvalidParams('parameter `name` is required');
     }
     return `hello ${name}`;
 });
@@ -30,20 +30,17 @@ jsonRpc.handle('{"jsonrpc":"2.0","method":"doSomething","id":"1"}');
 
 ### api
 + JsonRpcError
-    + static JsonRpcError.constructor(code, message, data?)
-    + static JsonRpcError.parseError()
-    + static JsonRpcError.invalidRequest(data?)
-    + static JsonRpcError.methodNotFound()
-    + static JsonRpcError.invalidParams(data?)
-    + static JsonRpcError.internalError(data?)
-    + static JsonRpcError.alert(message: string, data?)
+JsonRpcError.constructor(code, message, data?)
     + JsonRpcError.toJSON()
+    + JsonRpcError.ParseError.constructor(data?)
+    + JsonRpcError.InvalidRequest.constructor(data?)
+    + JsonRpcError.MethodNotFound.constructor(data?)
+    + JsonRpcError.InvalidParams.constructor(data?)
+    + JsonRpcError.InternalError.constructor(data?)
 + JsonRpcResult
     + static JsonRpcResult.success(id, result)
-    + static JsonRpcResult.error(id, error: JsonRpcError)
+    + static JsonRpcResult.error(id, error)
 + JsonRpcHandler
     + JsonRpcHandler.constructor()
-    + JsonRpcHandler.setHandler(methodName: string, method: Function, context?: Object)
-    + JsonRpcHandler.setOnUnexpectedError(onUnexpectedError: Function)
-    + JsonRpcHandler.getMethods()
+    + JsonRpcHandler.setMethodHandler(method: string, handler: Function, context?: Object)
     + async JsonRpcHandler.handle(body)

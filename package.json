@@ -1,6 +1,6 @@
 {
   "name": "tian-jsonrpc",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "A simple implementation of jsonrpc2",
   "main": "dist/index.js",
   "typings": "dist/index",
@@ -22,6 +22,6 @@
   },
   "homepage": "https://github.com/tianlinle/jsonrpc#readme",
   "files": [
-    "dist"
+    "src"
   ]
 }
