@@ -44,7 +44,7 @@ module.exports = class JsonRpcHandler {
           throw new JsonRpcError.MethodNotFound();
         }
         let description = this.methods[item.method];
-        let itemResult = await description.handler.call(description.context, item.params);
+        let itemResult = await description.handler.call(description.context, item);
         if (item.id != undefined) {
           resultList.push(JsonRpcResult.success(item.id, itemResult));
         }
